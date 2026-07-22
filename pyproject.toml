@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "restart-control"
+version = "0.1.0"
+description = "A guarded, queue-aware restart controller for ComfyUI."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+dependencies = ["comfyui-frontend-package>=1.6.13"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Repository = "https://github.com/andreszs/ComfyUI-Restart-Control"
+Documentation = "https://github.com/andreszs/ComfyUI-Restart-Control#readme"
+"Bug Tracker" = "https://github.com/andreszs/ComfyUI-Restart-Control/issues"
+
+[tool.comfy]
+PublisherId = "andreszs"
+DisplayName = "ComfyUI Restart Control"
+Icon = "https://raw.githubusercontent.com/andreszs/ComfyUI-Restart-Control/main/assets/icon.svg"
+Banner = "https://raw.githubusercontent.com/andreszs/ComfyUI-Restart-Control/main/assets/banner_010.gif"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

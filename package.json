@@ -1,0 +1,9 @@
+{
+  "name": "comfyui-restart-control-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node --check js/safe_restart.js && node --check js/safe_restart_core.mjs",
+    "test": "node --test tests/frontend/*.test.mjs"
+  }
+}

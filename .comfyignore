@@ -1,0 +1,15 @@
+.git/
+.github/
+.idea/
+.vscode/
+tests/
+docs/
+node_modules/
+package.json
+*.py[cod]
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.coverage
+Thumbs.db
+.DS_Store

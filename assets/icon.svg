@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">ComfyUI Restart Control icon</title>
+  <desc id="desc">A circular restart arrow surrounding a shield and power symbol.</desc>
+  <defs>
+    <linearGradient id="background" x1="54" y1="38" x2="350" y2="364" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5b8cff"/>
+      <stop offset="1" stop-color="#7257e8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="88" fill="#11131a"/>
+  <path d="M318 129a142 142 0 1 0 20 152" fill="none" stroke="url(#background)" stroke-width="34" stroke-linecap="round"/>
+  <path d="m310 70 16 72-72-16z" fill="#5b8cff" stroke="#11131a" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M200 109c31 23 62 25 80 28v69c0 53-33 83-80 101-47-18-80-48-80-101v-69c18-3 49-5 80-28z" fill="#1c2130" stroke="#f5f7ff" stroke-width="15" stroke-linejoin="round"/>
+  <path d="M200 155v56" stroke="#7ea2ff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M164 183a50 50 0 1 0 72 0" fill="none" stroke="#7ea2ff" stroke-width="18" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,717 @@
+.andreszs-safe-restart-overlay {
+    --safe-restart-cyan: #00e5ff;
+    --safe-restart-cyan-soft: #a4efff;
+    --safe-restart-cyan-muted: #78b8c9;
+    --safe-restart-green: #35ff88;
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    color: var(--safe-restart-cyan-soft);
+    background: rgb(0 7 12 / 48%);
+}
+
+.andreszs-safe-restart-card {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    width: min(30rem, 92vw);
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.95rem;
+    padding: 1.65rem 1.8rem;
+    border: 1px solid rgb(0 229 255 / 58%);
+    border-radius: 0.35rem;
+    background:
+        linear-gradient(180deg, rgb(0 229 255 / 9%), transparent 34%),
+        repeating-linear-gradient(
+            180deg,
+            rgb(0 229 255 / 2%) 0,
+            rgb(0 229 255 / 2%) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        rgb(3 12 18 / 78%);
+    box-shadow:
+        0 1.5rem 4rem rgb(0 0 0 / 48%),
+        0 0 2.25rem rgb(0 229 255 / 8%),
+        inset 0 0 1.75rem rgb(0 229 255 / 4%);
+    text-align: center;
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
+    backdrop-filter: blur(18px) saturate(125%);
+}
+
+.andreszs-safe-restart-card::before,
+.andreszs-safe-restart-card::after,
+.andreszs-safe-restart-selector-card::before,
+.andreszs-safe-restart-selector-card::after {
+    position: absolute;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-color: var(--safe-restart-cyan);
+    content: "";
+    filter: drop-shadow(0 0 0.45rem rgb(0 229 255 / 48%));
+    pointer-events: none;
+}
+
+.andreszs-safe-restart-card::before,
+.andreszs-safe-restart-selector-card::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+.andreszs-safe-restart-card::after,
+.andreszs-safe-restart-selector-card::after {
+    right: -1px;
+    bottom: -1px;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.andreszs-safe-restart-kicker {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    gap: 0.7rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgb(0 229 255 / 35%);
+    color: var(--safe-restart-cyan);
+    font-family: Bahnschrift, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.075em;
+    text-align: left;
+    text-shadow: 0 0 0.8rem rgb(0 229 255 / 35%);
+}
+
+.andreszs-safe-restart-beacon {
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--safe-restart-cyan);
+    box-shadow:
+        0 0 0.35rem var(--safe-restart-cyan),
+        0 0 1rem rgb(0 229 255 / 75%);
+    animation: andreszs-safe-restart-signal 1.6s ease-in-out infinite;
+    will-change: opacity, transform;
+}
+
+.andreszs-safe-restart-trace {
+    display: grid;
+    width: 100%;
+    gap: 0.7rem;
+    padding: 0 0.35rem;
+    color: var(--safe-restart-cyan-muted);
+    font-family: Bahnschrift, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.055em;
+}
+
+.andreszs-safe-restart-trace > div {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.andreszs-safe-restart-trace-label {
+    color: inherit;
+}
+
+.andreszs-safe-restart-trace b {
+    color: color-mix(in srgb, currentColor 70%, transparent);
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+
+.andreszs-safe-restart-trace-index {
+    color: color-mix(in srgb, var(--safe-restart-cyan-muted) 55%, transparent);
+    font-size: 0.7rem;
+}
+
+.andreszs-safe-restart-trace .is-active {
+    color: var(--safe-restart-cyan);
+    text-shadow: 0 0 0.7rem rgb(0 229 255 / 28%);
+}
+
+.andreszs-safe-restart-trace .is-active .andreszs-safe-restart-trace-index,
+.andreszs-safe-restart-trace .is-active b {
+    color: inherit;
+}
+
+.andreszs-safe-restart-telemetry {
+    display: grid;
+    width: 68%;
+    grid-template-columns: repeat(20, 0.32rem);
+    justify-content: space-between;
+}
+
+.andreszs-safe-restart-telemetry > span {
+    height: 1.35rem;
+    border-radius: 1px;
+    background: var(--safe-restart-cyan);
+    box-shadow: 0 0 0.8rem rgb(0 229 255 / 62%);
+    opacity: 0.15;
+    animation: andreszs-safe-restart-telemetry 1.7s linear infinite;
+    animation-delay: var(--delay);
+    will-change: opacity;
+}
+
+/* ComfyUI's performance setting forces every animation to 0.001ms. These two
+   status animations remain intentionally active while the backend is offline. */
+body.disable-animations .andreszs-safe-restart-beacon {
+    animation-duration: 1.6s !important;
+}
+
+body.disable-animations .andreszs-safe-restart-telemetry > span {
+    animation-duration: 1.7s !important;
+}
+
+.andreszs-safe-restart-complete .andreszs-safe-restart-card {
+    border-color: rgb(53 255 136 / 60%);
+    box-shadow:
+        0 1.5rem 4rem rgb(0 0 0 / 48%),
+        0 0 2.25rem rgb(53 255 136 / 10%),
+        inset 0 0 1.75rem rgb(53 255 136 / 5%);
+}
+
+.andreszs-safe-restart-complete .andreszs-safe-restart-card::before,
+.andreszs-safe-restart-complete .andreszs-safe-restart-card::after {
+    border-color: var(--safe-restart-green);
+    filter: drop-shadow(0 0 0.45rem rgb(53 255 136 / 55%));
+}
+
+.andreszs-safe-restart-complete .andreszs-safe-restart-kicker,
+.andreszs-safe-restart-complete .andreszs-safe-restart-trace > div,
+.andreszs-safe-restart-complete .andreszs-safe-restart-trace-index,
+.andreszs-safe-restart-complete .andreszs-safe-restart-trace b,
+.andreszs-safe-restart-complete .andreszs-safe-restart-detail,
+.andreszs-safe-restart-complete .andreszs-safe-restart-detail b {
+    color: var(--safe-restart-green);
+    text-shadow: 0 0 0.75rem rgb(53 255 136 / 30%);
+}
+
+.andreszs-safe-restart-complete .andreszs-safe-restart-kicker {
+    border-bottom-color: rgb(53 255 136 / 35%);
+}
+
+.andreszs-safe-restart-complete .andreszs-safe-restart-beacon,
+.andreszs-safe-restart-complete .andreszs-safe-restart-telemetry > span {
+    background: var(--safe-restart-green);
+    box-shadow: 0 0 0.85rem rgb(53 255 136 / 70%);
+    opacity: 1;
+    transform: scale(1);
+    animation: none !important;
+    will-change: auto;
+}
+
+.andreszs-safe-restart-error-icon {
+    display: none;
+    color: var(--p-orange-400, #fb923c);
+    font-size: 2rem;
+}
+
+.andreszs-safe-restart-card p {
+    margin: 0;
+}
+
+.andreszs-safe-restart-detail {
+    color: var(--safe-restart-cyan-soft);
+    font-family: Bahnschrift, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+    font-size: 1rem;
+    letter-spacing: 0.065em;
+    text-shadow: 0 0 0.65rem rgb(0 229 255 / 20%);
+}
+
+.andreszs-safe-restart-detail b {
+    color: var(--safe-restart-cyan);
+    font-weight: 400;
+}
+
+.andreszs-safe-restart-failed .andreszs-safe-restart-trace,
+.andreszs-safe-restart-failed .andreszs-safe-restart-telemetry {
+    display: none;
+}
+
+.andreszs-safe-restart-failed .andreszs-safe-restart-error-icon {
+    display: block;
+}
+
+.andreszs-safe-restart-failed .andreszs-safe-restart-detail {
+    display: none;
+}
+
+.andreszs-safe-restart-card [data-safe-restart-actions] {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.andreszs-safe-restart-card [data-safe-restart-actions][hidden] {
+    display: none;
+}
+
+.andreszs-safe-restart-card button {
+    padding: 0.5rem 0.875rem;
+    border: 1px solid var(--border-color, var(--p-content-border-color, #52525b));
+    border-radius: 0.5rem;
+    color: inherit;
+    background: var(--comfy-input-bg, var(--p-button-secondary-background, #27272a));
+    cursor: pointer;
+}
+
+.andreszs-safe-restart-selector {
+    --safe-restart-cyan: #00e5ff;
+    --safe-restart-cyan-soft: #a4efff;
+    --safe-restart-green: #35ff88;
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    color: #d8f8ff;
+    background: rgb(0 7 12 / 58%);
+    font-family: Bahnschrift, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+.andreszs-safe-restart-selector-card {
+    box-sizing: border-box;
+    position: relative;
+    width: min(36rem, 94vw);
+    max-height: min(48rem, 92vh);
+    padding: 1.4rem;
+    border: 1px solid rgb(0 229 255 / 55%);
+    border-radius: 0.4rem;
+    background:
+        linear-gradient(180deg, rgb(0 229 255 / 9%), transparent 28%),
+        repeating-linear-gradient(180deg, rgb(0 229 255 / 2%) 0 1px, transparent 1px 4px),
+        rgb(3 12 18 / 88%);
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 58%), 0 0 2.5rem rgb(0 229 255 / 9%);
+    -webkit-backdrop-filter: blur(20px) saturate(125%);
+    backdrop-filter: blur(20px) saturate(125%);
+}
+
+.andreszs-safe-restart-selector-card header {
+    padding-right: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgb(0 229 255 / 28%);
+}
+
+.andreszs-safe-restart-selector-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--safe-restart-cyan);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.075em;
+    text-shadow: 0 0 0.8rem rgb(0 229 255 / 35%);
+}
+
+.andreszs-safe-restart-selector-kicker span {
+    width: 0.45rem;
+    height: 0.45rem;
+    background: var(--safe-restart-cyan);
+    box-shadow: 0 0 0.75rem rgb(0 229 255 / 75%);
+}
+
+.andreszs-safe-restart-selector-card h2 {
+    margin: 0.7rem 0 0.35rem;
+    color: #f2fdff;
+    font-family: inherit;
+    font-size: 1.28rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
+.andreszs-safe-restart-selector-card header p,
+.andreszs-safe-restart-selector-note {
+    margin: 0;
+    color: #8eb5be;
+    font-size: 0.77rem;
+    line-height: 1.45;
+}
+
+.andreszs-safe-restart-selector-toolbar {
+    display: grid;
+    grid-template-columns: minmax(10rem, 1fr) auto;
+    gap: 0.55rem;
+    padding: 0.9rem 0;
+}
+
+.andreszs-safe-restart-selector-toolbar label {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+    padding: 0 0.7rem;
+    border: 1px solid rgb(0 229 255 / 25%);
+    border-radius: 0.3rem;
+    background: rgb(0 12 19 / 58%);
+}
+
+.andreszs-safe-restart-selector-toolbar label:focus-within {
+    border-color: rgb(0 229 255 / 70%);
+    box-shadow: 0 0 0 1px rgb(0 229 255 / 18%);
+}
+
+.andreszs-safe-restart-selector-toolbar i {
+    color: #5b9ca9;
+    font-size: 0.8rem;
+}
+
+.andreszs-safe-restart-selector-toolbar input {
+    width: 100%;
+    min-width: 0;
+    padding: 0.55rem 0;
+    border: 0;
+    outline: 0;
+    color: #d8f8ff;
+    background: transparent;
+    font: inherit;
+    font-size: 0.78rem;
+}
+
+.andreszs-safe-restart-selector button {
+    padding: 0.52rem 0.78rem;
+    border: 1px solid rgb(0 229 255 / 28%);
+    border-radius: 0.3rem;
+    color: #9fdce8;
+    background: rgb(6 28 36 / 78%);
+    font: inherit;
+    font-size: 0.72rem;
+    cursor: pointer;
+}
+
+.andreszs-safe-restart-selector button:hover,
+.andreszs-safe-restart-selector button:focus-visible {
+    border-color: rgb(0 229 255 / 72%);
+    color: #e5fbff;
+    outline: none;
+}
+
+.andreszs-safe-restart-selector button.andreszs-safe-restart-selector-close {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.75rem;
+    z-index: 1;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    color: rgb(164 239 255 / 52%);
+    background: transparent;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.andreszs-safe-restart-selector button.andreszs-safe-restart-selector-close:hover,
+.andreszs-safe-restart-selector button.andreszs-safe-restart-selector-close:focus-visible {
+    color: var(--safe-restart-cyan-soft);
+    background: rgb(0 229 255 / 8%);
+}
+
+.andreszs-safe-restart-plugin-list {
+    max-height: min(25rem, 52vh);
+    overflow-y: auto;
+    border-top: 1px solid rgb(0 229 255 / 18%);
+    border-bottom: 1px solid rgb(0 229 255 / 18%);
+    scrollbar-color: rgb(0 229 255 / 42%) rgb(0 12 19 / 65%);
+}
+
+.andreszs-safe-restart-plugin-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto 2.25rem;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 2.65rem;
+    padding: 0.2rem 0.55rem;
+    border-bottom: 1px solid rgb(118 183 197 / 10%);
+    cursor: pointer;
+}
+
+.andreszs-safe-restart-plugin-row:hover {
+    background: rgb(0 229 255 / 4%);
+}
+
+.andreszs-safe-restart-plugin-row:has(input:disabled) {
+    cursor: default;
+    opacity: 0.62;
+}
+
+.andreszs-safe-restart-plugin-row[hidden] {
+    display: none;
+}
+
+.andreszs-safe-restart-no-results {
+    display: grid;
+    min-height: 5rem;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.85rem;
+    margin: 1rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgb(255 68 92 / 48%);
+    border-radius: 0.25rem;
+    color: #ff667a;
+    background:
+        linear-gradient(90deg, rgb(255 49 77 / 9%), transparent 70%),
+        rgb(22 4 9 / 52%);
+    box-shadow: inset 0 0 1.2rem rgb(255 49 77 / 5%);
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+}
+
+.andreszs-safe-restart-no-results[hidden] {
+    display: none;
+}
+
+.andreszs-safe-restart-no-results > span {
+    display: grid;
+    width: 1.65rem;
+    height: 1.65rem;
+    place-items: center;
+    border: 1px solid rgb(255 68 92 / 65%);
+    color: #ff4963;
+    background: rgb(255 49 77 / 8%);
+    box-shadow: 0 0 0.75rem rgb(255 49 77 / 18%);
+    font-family: Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.andreszs-safe-restart-no-results strong {
+    font-size: inherit;
+    font-weight: 500;
+}
+
+.andreszs-safe-restart-plugin-identity {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.andreszs-safe-restart-plugin-identity strong,
+.andreszs-safe-restart-plugin-identity small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.andreszs-safe-restart-plugin-identity strong {
+    color: #d8f8ff;
+    font-size: 0.83rem;
+    font-weight: 500;
+}
+
+.andreszs-safe-restart-plugin-identity small {
+    color: #5f8992;
+    font-size: 0.63rem;
+}
+
+.andreszs-safe-restart-plugin-state {
+    color: #6c949d;
+    font-size: 0.61rem;
+    letter-spacing: 0.08em;
+}
+
+.andreszs-safe-restart-plugin-state.is-active,
+.andreszs-safe-restart-plugin-state.is-protected {
+    color: var(--safe-restart-cyan);
+    text-shadow: 0 0 0.6rem rgb(0 229 255 / 28%);
+}
+
+.andreszs-safe-restart-plugin-state.is-staged {
+    color: #ffb454;
+    text-shadow: 0 0 0.6rem rgb(255 180 84 / 24%);
+}
+
+.andreszs-safe-restart-plugin-row input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.andreszs-safe-restart-plugin-switch {
+    position: relative;
+    width: 2.1rem;
+    height: 1.05rem;
+    border: 1px solid rgb(99 145 155 / 55%);
+    border-radius: 2rem;
+    background: rgb(13 31 37 / 88%);
+}
+
+.andreszs-safe-restart-plugin-switch::after {
+    position: absolute;
+    top: 0.16rem;
+    left: 0.18rem;
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 50%;
+    background: #63858c;
+    content: "";
+    transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+}
+
+.andreszs-safe-restart-plugin-row input:checked + .andreszs-safe-restart-plugin-switch {
+    border-color: rgb(0 229 255 / 62%);
+    background: rgb(0 91 108 / 48%);
+}
+
+.andreszs-safe-restart-plugin-row input:checked + .andreszs-safe-restart-plugin-switch::after {
+    background: var(--safe-restart-cyan);
+    box-shadow: 0 0 0.65rem rgb(0 229 255 / 68%);
+    transform: translateX(1.05rem);
+}
+
+.andreszs-safe-restart-plugin-row input:focus-visible + .andreszs-safe-restart-plugin-switch {
+    outline: 2px solid rgb(0 229 255 / 65%);
+    outline-offset: 2px;
+}
+
+.andreszs-safe-restart-plugin-row input:disabled + .andreszs-safe-restart-plugin-switch {
+    filter: saturate(0.5);
+}
+
+.andreszs-safe-restart-selector-summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 0.15rem 0.55rem;
+    color: var(--safe-restart-cyan);
+    font-size: 0.68rem;
+    letter-spacing: 0.075em;
+}
+
+.andreszs-safe-restart-selector-summary [data-selector-queue] {
+    color: var(--safe-restart-green);
+}
+
+.andreszs-safe-restart-selector-summary [data-selector-queue].is-busy {
+    color: #ffb454;
+}
+
+.andreszs-safe-restart-selector-status {
+    display: grid;
+    min-width: 0;
+}
+
+.andreszs-safe-restart-selector-status > span {
+    grid-area: 1 / 1;
+    white-space: nowrap;
+}
+
+.andreszs-safe-restart-selector-status [data-selector-profile] {
+    opacity: 0;
+}
+
+.andreszs-safe-restart-selector-card footer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    padding-top: 1rem;
+}
+
+.andreszs-safe-restart-selector-card footer button {
+    width: 100%;
+    min-height: 2.5rem;
+}
+
+.andreszs-safe-restart-selector button.is-primary {
+    border-color: rgb(0 229 255 / 72%);
+    color: #001216;
+    background: var(--safe-restart-cyan);
+    box-shadow: 0 0 1rem rgb(0 229 255 / 18%);
+}
+
+.andreszs-safe-restart-selector button.is-primary:hover,
+.andreszs-safe-restart-selector button.is-primary:focus-visible {
+    color: #001216;
+    background: #7af2ff;
+}
+
+@media (max-width: 34rem) {
+    .andreszs-safe-restart-card {
+        padding: 1.35rem 1.15rem;
+    }
+
+    .andreszs-safe-restart-kicker {
+        font-size: 0.82rem;
+    }
+
+    .andreszs-safe-restart-selector-kicker {
+        font-size: 0.82rem;
+    }
+
+    .andreszs-safe-restart-trace {
+        font-size: 0.72rem;
+    }
+
+    .andreszs-safe-restart-detail {
+        font-size: 0.84rem;
+    }
+
+    .andreszs-safe-restart-selector-card {
+        padding: 1rem;
+    }
+
+    .andreszs-safe-restart-selector-toolbar {
+        grid-template-columns: 1fr;
+    }
+
+    .andreszs-safe-restart-selector-toolbar label {
+        min-height: 2.35rem;
+    }
+
+    .andreszs-safe-restart-plugin-row {
+        grid-template-columns: minmax(0, 1fr) 2.25rem;
+    }
+
+    .andreszs-safe-restart-plugin-state {
+        display: none;
+    }
+}
+
+@keyframes andreszs-safe-restart-telemetry {
+    0%,
+    100% {
+        opacity: 0.12;
+    }
+
+    6% {
+        opacity: 0.28;
+    }
+
+    12% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0.38;
+    }
+
+    28% {
+        opacity: 0.12;
+    }
+}
+
+@keyframes andreszs-safe-restart-signal {
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(0.85);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

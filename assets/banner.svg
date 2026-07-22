@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 540" role="img" aria-labelledby="title desc">
+  <title id="title">ComfyUI Restart Control</title>
+  <desc id="desc">Restart Control branding with queue, shield, and reconnect symbols.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1260" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0d1018"/>
+      <stop offset="1" stop-color="#20243a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="145" y1="94" x2="447" y2="439" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5b8cff"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1260" height="540" rx="32" fill="url(#bg)"/>
+  <circle cx="270" cy="270" r="163" fill="#121621" stroke="#2d334a" stroke-width="3"/>
+  <path d="M375 188a130 130 0 1 0 13 167" fill="none" stroke="url(#accent)" stroke-width="30" stroke-linecap="round"/>
+  <path d="m363 134 14 67-67-15z" fill="#6389fb" stroke="#121621" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M270 177c27 20 54 22 70 24v55c0 47-29 73-70 89-41-16-70-42-70-89v-55c16-2 43-4 70-24z" fill="#1d2333" stroke="#f6f7fb" stroke-width="13" stroke-linejoin="round"/>
+  <path d="M270 217v43m-29-21a41 41 0 1 0 58 0" fill="none" stroke="#82a5ff" stroke-width="14" stroke-linecap="round"/>
+  <text x="500" y="238" fill="#f7f8fc" font-family="Inter,Segoe UI,sans-serif" font-size="76" font-weight="700">Restart Control</text>
+  <text x="503" y="306" fill="#aeb8d2" font-family="Inter,Segoe UI,sans-serif" font-size="29">Queue-aware. Guarded. Automatically reconnected.</text>
+  <g transform="translate(505 355)" font-family="Inter,Segoe UI,sans-serif" font-size="22" fill="#dce4fa">
+    <rect width="180" height="54" rx="27" fill="#252c43"/><text x="28" y="35">Native dialog</text>
+    <rect x="198" width="180" height="54" rx="27" fill="#252c43"/><text x="226" y="35">CSRF guard</text>
+    <rect x="396" width="211" height="54" rx="27" fill="#252c43"/><text x="424" y="35">Boot ID polling</text>
+  </g>
+</svg>
