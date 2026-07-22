@@ -282,7 +282,7 @@ body.disable-animations .andreszs-safe-restart-telemetry > span {
 .andreszs-safe-restart-selector-card {
     box-sizing: border-box;
     position: relative;
-    width: min(36rem, 94vw);
+    width: min(30rem, 92vw);
     max-height: min(48rem, 92vh);
     padding: 1.4rem;
     border: 1px solid rgb(0 229 255 / 55%);

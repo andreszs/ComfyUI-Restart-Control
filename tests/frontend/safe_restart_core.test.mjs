@@ -199,7 +199,8 @@ test("plugin matrix shares the restart frame and offers a subtle close action", 
         /\.andreszs-safe-restart-card::before,[\s\S]*\.andreszs-safe-restart-selector-card::before,[\s\S]*\.andreszs-safe-restart-selector-card::after\s*\{/,
     );
     assert.match(stylesheet, /\.andreszs-safe-restart-selector button\.andreszs-safe-restart-selector-close\s*\{/);
-    assert.match(stylesheet, /\.andreszs-safe-restart-selector-card\s*\{[^}]*width:\s*min\(36rem, 94vw\)/s);
+    assert.match(stylesheet, /\.andreszs-safe-restart-card\s*\{[^}]*width:\s*min\(30rem, 92vw\)/s);
+    assert.match(stylesheet, /\.andreszs-safe-restart-selector-card\s*\{[^}]*width:\s*min\(30rem, 92vw\)/s);
     assert.match(
         stylesheet,
         /\.andreszs-safe-restart-selector-kicker\s*\{[^}]*font-size:\s*1rem;[^}]*font-weight:\s*500;[^}]*letter-spacing:\s*0\.075em/s,

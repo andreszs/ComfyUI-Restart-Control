@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "restart-control"
-version = "0.1.0"
+version = "0.1.1"
 description = "A guarded, queue-aware restart controller for ComfyUI."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -25,7 +25,7 @@ Documentation = "https://github.com/andreszs/ComfyUI-Restart-Control#readme"
 PublisherId = "andreszs"
 DisplayName = "ComfyUI Restart Control"
 Icon = "https://raw.githubusercontent.com/andreszs/ComfyUI-Restart-Control/main/assets/icon.svg"
-Banner = "https://raw.githubusercontent.com/andreszs/ComfyUI-Restart-Control/main/assets/banner_010.gif"
+Banner = "https://raw.githubusercontent.com/andreszs/ComfyUI-Restart-Control/main/assets/banner_011.gif"
 
 [tool.ruff]
 line-length = 100

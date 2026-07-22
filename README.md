@@ -17,7 +17,7 @@ Choose the custom nodes that will load on the next restart.
 Restart Control locks the workspace and reports the backend handoff until the new instance is available.
 
 <p align="center">
-  <img src="assets/boot-trace.png" alt="Restart Control Boot Trace" width="480" />
+  <img src="assets/banner_011.gif" alt="Animated Restart Control Boot Trace" width="480" />
 </p>
 
 ## Installation

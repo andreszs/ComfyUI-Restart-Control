@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented here.
 
+## [0.1.1] - 2026-07-22
+
+### Changed
+
+- Matched the plugin matrix width to the Boot Trace display.
+- Updated the plugin matrix screenshot and animated Registry banner.
+
 ## [0.1.0] - 2026-07-22
 
 ### Added
