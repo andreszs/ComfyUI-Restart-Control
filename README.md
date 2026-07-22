@@ -1,3 +1,10 @@
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/github/v/tag/andreszs/ComfyUI-Restart-Control?label=version" />
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/andreszs/ComfyUI-Restart-Control" />
+  <img alt="License" src="https://img.shields.io/github/license/andreszs/ComfyUI-Restart-Control" />
+</p>
+<br />
+
 # ComfyUI Restart Control
 
 ComfyUI Restart Control adds a native-looking **Restart** action immediately above **Help** in the left sidebar. Every click opens a plugin matrix where you choose which custom nodes load on the next boot. It then replaces the backend process, waits for a new boot ID, and reloads the interface automatically.
