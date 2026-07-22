@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented here.
 
+## [0.1.2] - 2026-07-22
+
+### Changed
+
+- Added a sidebar action screenshot to the README.
+- Displayed the plugin matrix preview at its native resolution.
+
 ## [0.1.1] - 2026-07-22
 
 ### Changed

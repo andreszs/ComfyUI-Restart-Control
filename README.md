@@ -4,12 +4,20 @@ ComfyUI Restart Control adds a native-looking **Restart** action immediately abo
 
 ## Preview
 
+### Sidebar action
+
+Restart Control places the restart action directly above Help.
+
+<p align="center">
+  <img src="assets/restart-sidebar.png" alt="Restart action in the ComfyUI sidebar" width="144" />
+</p>
+
 ### Plugin matrix
 
 Choose the custom nodes that will load on the next restart.
 
 <p align="center">
-  <img src="assets/plugin-matrix.png" alt="Restart Control plugin matrix" width="576" />
+  <img src="assets/plugin-matrix.png" alt="Restart Control plugin matrix" width="480" />
 </p>
 
 ### Boot trace
