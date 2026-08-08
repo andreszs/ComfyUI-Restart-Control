@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented here.
 
+## [0.1.3] - 2026-08-08
+
+### Changed
+
+- Updated the Registry icon.
+
 ## [0.1.2] - 2026-07-22
 
 ### Changed
