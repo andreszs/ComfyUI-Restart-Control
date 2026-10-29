@@ -87,7 +87,7 @@ This protects against accidental requests and ordinary cross-site request forger
 
 ## Compatibility
 
-The extension requires ComfyUI Frontend 1.6.13 or newer. Currently verified only against the local Windows Portable installation using ComfyUI Frontend 1.45.21. Manual Python/venv, Linux, macOS, ComfyUI Desktop, reverse proxies, and remote browsers remain unverified until they are tested directly.
+The extension requires ComfyUI Frontend 1.6.13 or newer. Sidebar placement and click compatibility cover every frontend package pinned by ComfyUI Core v0.28.x through v0.43.x (Frontend 1.45.21 through 1.57.4). Manual Python/venv, Linux, macOS, ComfyUI Desktop, reverse proxies, and remote browsers remain unverified until they are tested directly.
 
 When replacing the backend process, Restart Control preserves ComfyUI's original command-line arguments and adds ComfyUI's official `--disable-auto-launch` flag if it is absent. This prevents Windows Portable from opening a second browser tab while the existing tab waits and reloads itself. Selective profiles additionally manage `--disable-all-custom-nodes` and `--whitelist-custom-nodes`; a restart with the complete profile restores the saved arguments.
 

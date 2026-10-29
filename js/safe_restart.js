@@ -12,6 +12,11 @@ const {
     queueCounts,
 } = restartCore;
 const PLUGINS_ROUTE = restartCore.PLUGINS_ROUTE || "/safe-restart/plugins";
+const findSidebarActionButton = restartCore.findSidebarActionButton || ((toolbar, tabId) => (
+    toolbar.querySelector(`[data-testid="${tabId}-tab-button"]`) ||
+    toolbar.querySelector(`.${tabId}-tab-button`) ||
+    toolbar.querySelector('button[aria-label="Restart ComfyUI"]')
+));
 
 function selectedPluginIds(plugins) {
     return plugins
@@ -746,18 +751,11 @@ async function requestRestart(button) {
     }
 }
 
-function findActionButton(toolbar) {
-    return (
-        toolbar.querySelector(`.${TAB_ID}-tab-button`) ||
-        toolbar.querySelector('button[aria-label="Restart ComfyUI"]')
-    );
-}
-
 function installActionButton() {
     const toolbar = document.querySelector('[data-testid="side-toolbar"]');
     if (!toolbar) return;
 
-    const actionButton = findActionButton(toolbar);
+    const actionButton = findSidebarActionButton(toolbar, TAB_ID);
     const helpButton = toolbar.querySelector('[data-testid="help-center-button"]');
     if (!actionButton || !helpButton?.parentElement) return;
 

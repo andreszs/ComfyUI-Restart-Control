@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import {
+    findSidebarActionButton,
     hasCompletedRestart,
     isAllowedBrowserShortcut,
     nextPollDelay,
@@ -21,6 +22,38 @@ const frontend = await readFile(
 );
 test("queueCounts tolerates missing queue data", () => {
     assert.deepEqual(queueCounts(undefined), { running: 0, pending: 0 });
+});
+
+test("sidebar action resolves every frontend layout pinned by Core 0.28 through 0.43", () => {
+    const layouts = [
+        ["1.45.21", ".andreszs-restart-control-tab-button"],
+        ["1.47.10", ".andreszs-restart-control-tab-button"],
+        ["1.47.11", ".andreszs-restart-control-tab-button"],
+        ["1.47.12", ".andreszs-restart-control-tab-button"],
+        ["1.48.7", ".andreszs-restart-control-tab-button"],
+        ["1.49.6", ".andreszs-restart-control-tab-button"],
+        ["1.51.10", '[data-testid="andreszs-restart-control-tab-button"]'],
+        ["1.52.7", '[data-testid="andreszs-restart-control-tab-button"]'],
+        ["1.53.6", '[data-testid="andreszs-restart-control-tab-button"]'],
+        ["1.53.10", '[data-testid="andreszs-restart-control-tab-button"]'],
+        ["1.55.17", '[data-testid="andreszs-restart-control-tab-button"]'],
+        ["1.55.18", '[data-testid="andreszs-restart-control-tab-button"]'],
+        ["1.57.4", '[data-testid="andreszs-restart-control-tab-button"]'],
+    ];
+
+    for (const [version, renderedSelector] of layouts) {
+        const button = { version };
+        const toolbar = {
+            querySelector(selector) {
+                return selector === renderedSelector ? button : null;
+            },
+        };
+        assert.equal(
+            findSidebarActionButton(toolbar, "andreszs-restart-control"),
+            button,
+            `Frontend ${version}`,
+        );
+    }
 });
 
 test("poll backoff is bounded", () => {
@@ -125,6 +158,12 @@ test("every Restart click opens the selective plugin matrix", () => {
     assert.match(frontend, /Define restart directive/);
     assert.doesNotMatch(frontend, /Ctrl\+Click/);
     assert.doesNotMatch(frontend, /actionButton\.title\s*=/);
+});
+
+test("restart action supports current and legacy sidebar identifiers", () => {
+    assert.match(frontend, /restartCore\.findSidebarActionButton \|\|/);
+    assert.match(frontend, /findSidebarActionButton\(toolbar, TAB_ID\)/);
+    assert.match(frontend, /insertBefore\(actionButton, helpButton\)/);
 });
 
 test("one contextual control toggles the entire selectable plugin set", () => {

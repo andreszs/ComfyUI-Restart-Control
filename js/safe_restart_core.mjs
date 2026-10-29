@@ -4,6 +4,14 @@ export const QUEUE_ROUTE = "/queue";
 export const RESTART_ROUTE = "/safe-restart/restart";
 export const TOKEN_HEADER = "X-ComfyUI-Safe-Restart-Token";
 
+export function findSidebarActionButton(toolbar, tabId) {
+    return (
+        toolbar.querySelector(`[data-testid="${tabId}-tab-button"]`) ||
+        toolbar.querySelector(`.${tabId}-tab-button`) ||
+        toolbar.querySelector('button[aria-label="Restart ComfyUI"]')
+    );
+}
+
 export function queueCounts(queue) {
     return {
         running: Array.isArray(queue?.queue_running) ? queue.queue_running.length : 0,

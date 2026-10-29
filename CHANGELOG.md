@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented here.
 
+## [Unreleased]
+
+### Fixed
+
+- Restored Restart placement and click handling across every frontend package pinned by ComfyUI Core v0.28.x through v0.43.x, supporting both legacy class-based and current `data-testid` sidebar identifiers.
+
 ## [0.1.3] - 2026-08-08
 
 ### Changed
