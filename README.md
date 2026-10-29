@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/github/v/tag/andreszs/ComfyUI-Restart-Control?label=version" />
+  <img alt="Version" src="https://img.shields.io/github/v/tag/andreszs/ComfyUI-Restart-Control?label=version&amp;cacheSeconds=300&amp;release=v0.1.5" />
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/andreszs/ComfyUI-Restart-Control" />
   <img alt="License" src="https://img.shields.io/github/license/andreszs/ComfyUI-Restart-Control" />
 </p>
@@ -8,6 +8,27 @@
 # ComfyUI Restart Control
 
 ComfyUI Restart Control adds a native-looking **Restart** action immediately above **Help** in the left sidebar. Every click opens a plugin matrix where you choose which custom nodes load on the next boot. It then replaces the backend process, waits for a new boot ID, and reloads the interface automatically.
+
+## Contents
+
+- [Preview](#preview)
+  - [Sidebar action](#sidebar-action)
+  - [Plugin matrix](#plugin-matrix)
+  - [Boot trace](#boot-trace)
+- [Installation](#installation)
+  - [Local or manual installation](#local-or-manual-installation)
+  - [Comfy Registry / Manager](#comfy-registry--manager)
+- [Usage](#usage)
+  - [Next-boot plugin profile](#next-boot-plugin-profile)
+- [Tasks in progress](#tasks-in-progress)
+- [Security model](#security-model)
+- [Compatibility](#compatibility)
+- [Remote instances](#remote-instances)
+- [Troubleshooting](#troubleshooting)
+- [Support](#support)
+- [Development and tests](#development-and-tests)
+- [License](#license)
+- [More ComfyUI tools by andreszs](#more-comfyui-tools-by-andreszs)
 
 ## Preview
 
@@ -104,6 +125,19 @@ The browser request must remain same-origin with the ComfyUI host. A correctly c
 - **ComfyUI does not reconnect:** use **Try again** or **Reload now** in the status overlay, then inspect the ComfyUI console for `comfyui.restart_control` errors.
 - **ComfyUI is still using a selective profile:** open **Restart**, leave every available plugin enabled, and select **RESTART** to restore the original launch arguments.
 - **A task was interrupted:** the dialog warns before restart; the extension does not cancel or drain active work.
+
+## Support
+
+If ComfyUI Restart Control is useful to you, consider [starring the repository](https://github.com/andreszs/ComfyUI-Restart-Control). Stars help other ComfyUI users discover the project.
+
+Financial contributions help cover the tools used to develop, maintain, and test this and other open-source ComfyUI extensions:
+
+- [Ko-fi](https://ko-fi.com/D1D716OLPM)
+- [PayPal](https://www.paypal.com/ncp/payment/GEEM324PDD9NC)
+- **USDC on Arbitrum One:** `0xe36a336fC6cc9Daae657b4A380dA492AB9601e73`
+
+> [!CAUTION]
+> Send USDC using the Arbitrum One network only. Transfers sent through another network may be permanently lost.
 
 ## Development and tests
 

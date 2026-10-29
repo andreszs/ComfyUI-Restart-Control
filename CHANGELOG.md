@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented here.
 
+## [0.1.5] - 2026-10-29
+
+### Changed
+
+- Added a README table of contents.
+- Added project support and financial contribution links.
+
 ## [0.1.4] - 2026-10-29
 
 ### Fixed
