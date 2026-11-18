@@ -5,7 +5,7 @@
 </p>
 <br />
 
-# ComfyUI Restart Control
+# ComfyUI Restart Control 🔄
 
 ComfyUI Restart Control adds a native-looking **Restart** action immediately above **Help** in the left sidebar. Every click opens a plugin matrix where you choose which custom nodes load on the next boot. It then replaces the backend process, waits for a new boot ID, and reloads the interface automatically.
 
